@@ -51,7 +51,7 @@ partial class FrmLogin
         panelBackdrop.Location = new Point(0, 0);
         panelBackdrop.Margin = new Padding(3, 4, 3, 4);
         panelBackdrop.Name = "panelBackdrop";
-        panelBackdrop.Size = new Size(686, 720);
+        panelBackdrop.Size = new Size(986, 725);
         panelBackdrop.TabIndex = 2;
         panelBackdrop.Paint += PanelBackdrop_Paint;
         // 
@@ -69,7 +69,7 @@ partial class FrmLogin
         panelCard.Controls.Add(txtUser);
         panelCard.Controls.Add(lblUser);
         panelCard.Controls.Add(lblTitle);
-        panelCard.Location = new Point(126, 96);
+        panelCard.Location = new Point(276, 98);
         panelCard.Margin = new Padding(3, 4, 3, 4);
         panelCard.Name = "panelCard";
         panelCard.Padding = new Padding(46, 48, 46, 40);
@@ -208,7 +208,7 @@ partial class FrmLogin
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(245, 242, 235);
-        ClientSize = new Size(686, 720);
+        ClientSize = new Size(986, 725);
         Controls.Add(panelCard);
         Controls.Add(panelBackdrop);
         FormBorderStyle = FormBorderStyle.FixedSingle;
