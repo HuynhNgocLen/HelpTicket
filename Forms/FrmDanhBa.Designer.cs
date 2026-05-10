@@ -124,7 +124,7 @@ partial class FrmDanhBa
         // 
         // panelRoot
         // 
-        panelRoot.BackColor = Color.FromArgb(241, 245, 249);
+        panelRoot.BackColor = Color.FromArgb(245, 242, 235);
         panelRoot.Controls.Add(panelContent);
         panelRoot.Controls.Add(panelToolbar);
         panelRoot.Controls.Add(panelStats);
@@ -150,7 +150,7 @@ partial class FrmDanhBa
         // 
         // panelFooter
         // 
-        panelFooter.BackColor = Color.FromArgb(248, 250, 252);
+        panelFooter.BackColor = Color.FromArgb(255, 253, 249);
         panelFooter.Controls.Add(lblFooterInfo);
         panelFooter.Controls.Add(lblTrang);
         panelFooter.Controls.Add(btnTrangDau);
@@ -255,26 +255,26 @@ partial class FrmDanhBa
         dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
         dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
         dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle1.BackColor = Color.FromArgb(248, 250, 252);
-        dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F);
-        dataGridViewCellStyle1.ForeColor = Color.FromArgb(30, 41, 59);
-        dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(248, 250, 252);
-        dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(30, 41, 59);
+        dataGridViewCellStyle1.BackColor = Color.FromArgb(228, 224, 214);
+        dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9.25F);
+        dataGridViewCellStyle1.ForeColor = Color.FromArgb(15, 23, 42);
+        dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(228, 224, 214);
+        dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(15, 23, 42);
         dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
         dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-        dgv.ColumnHeadersHeight = 38;
+        dgv.ColumnHeadersHeight = 36;
         dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.White;
         dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-        dataGridViewCellStyle2.ForeColor = Color.FromArgb(30, 41, 59);
-        dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(224, 242, 254);
-        dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(30, 41, 59);
+        dataGridViewCellStyle2.ForeColor = Color.FromArgb(15, 23, 42);
+        dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(204, 251, 241);
+        dataGridViewCellStyle2.SelectionForeColor = Color.Black;
         dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
         dgv.DefaultCellStyle = dataGridViewCellStyle2;
         dgv.Dock = DockStyle.Fill;
         dgv.EnableHeadersVisualStyles = false;
-        dgv.GridColor = Color.FromArgb(241, 245, 249);
+        dgv.GridColor = Color.FromArgb(210, 205, 196);
         dgv.Location = new Point(0, 0);
         dgv.MultiSelect = false;
         dgv.Name = "dgv";
@@ -331,7 +331,7 @@ partial class FrmDanhBa
         // 
         // panelSearch
         // 
-        panelSearch.BackColor = Color.White;
+        panelSearch.BackColor = Color.FromArgb(255, 253, 249);
         panelSearch.BorderStyle = BorderStyle.FixedSingle;
         panelSearch.Controls.Add(txtSearch);
         panelSearch.Controls.Add(lblSearchIcon);
@@ -676,7 +676,7 @@ partial class FrmDanhBa
         string labelText, string valueText, string subText,
         Color valueColor)
     {
-        card.BackColor = Color.White;
+        card.BackColor = Color.FromArgb(255, 253, 249);
         card.BorderStyle = BorderStyle.FixedSingle;
         card.Dock = DockStyle.Fill;
         card.Margin = new Padding(0, 0, 10, 0);

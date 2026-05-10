@@ -244,20 +244,27 @@ public partial class FrmDashboard : Form
         chart.Titles.Clear();
         chart.BackColor = UiTheme.Surface;
         chart.AntiAliasing = AntiAliasingStyles.All;
+        chart.Palette = ChartColorPalette.None;
 
         var vung = new ChartArea("main") { BackColor = UiTheme.Surface };
         vung.AxisX.MajorGrid.Enabled = false;
         vung.AxisX.LabelStyle.Font = UiTheme.FontUi(8.5F);
+        vung.AxisX.Interval = 1;
+        vung.AxisX.IsLabelAutoFit = false;
         vung.AxisY.MajorGrid.LineColor = UiTheme.BorderHairline;
         vung.AxisY.LabelStyle.Font = UiTheme.FontUi(8.5F);
+        vung.AxisY.Minimum = 0;
         chart.ChartAreas.Add(vung);
 
         var day = new Series("UuTien")
         {
             ChartType = SeriesChartType.Column,
             IsValueShownAsLabel = true,
-            Font = UiTheme.FontUi(8.5F)
+            Font = UiTheme.FontUi(8.5F),
+            LabelFormat = "#0",
+            IsXValueIndexed = true
         };
+        day["PointWidth"] = "0.55";
         chart.Series.Add(day);
 
         chart.Titles.Add(new Title(tieuDe)
@@ -279,8 +286,11 @@ public partial class FrmDashboard : Form
         var vung = new ChartArea("main") { BackColor = UiTheme.Surface };
         vung.AxisX.MajorGrid.Enabled = false;
         vung.AxisX.LabelStyle.Font = UiTheme.FontUi(8.5F);
+        vung.AxisX.Interval = 1;
+        vung.AxisX.IsLabelAutoFit = false;
         vung.AxisY.MajorGrid.LineColor = UiTheme.BorderHairline;
         vung.AxisY.LabelStyle.Font = UiTheme.FontUi(8.5F);
+        vung.AxisY.Minimum = 0;
         chart.ChartAreas.Add(vung);
 
         var day = new Series("SoLuong")
@@ -289,8 +299,12 @@ public partial class FrmDashboard : Form
             BorderWidth = 2,
             MarkerStyle = MarkerStyle.Circle,
             MarkerSize = 7,
+            Color = Color.FromArgb(37, 99, 235),
+            MarkerColor = Color.FromArgb(37, 99, 235),
             IsValueShownAsLabel = true,
-            Font = UiTheme.FontUi(8.5F)
+            Font = UiTheme.FontUi(8.5F),
+            LabelFormat = "#0",
+            IsXValueIndexed = true
         };
         chart.Series.Add(day);
 
@@ -324,20 +338,23 @@ public partial class FrmDashboard : Form
 
         var sCot = _chartUuTien.Series["UuTien"];
         sCot.Points.Clear();
-        var tongUt = d.UuTienCao + d.UuTienTrungBinh + d.UuTienThap;
-        if (tongUt == 0)
+
+        var ten = new[] { "Cao", "Trung bình", "Thấp" };
+        var giaTri = new[] { d.UuTienCao, d.UuTienTrungBinh, d.UuTienThap };
+        var mau = new[]
         {
-            sCot.Points.AddXY("—", 0);
-            sCot.Points[0].Color = Color.FromArgb(200, 200, 200);
-        }
-        else
+            Color.FromArgb(220, 38, 38),
+            UiTheme.AccentAmber,
+            Color.FromArgb(5, 150, 105)
+        };
+
+        for (var i = 0; i < ten.Length; i++)
         {
-            var i1 = sCot.Points.AddXY("Cao", d.UuTienCao);
-            sCot.Points[i1].Color = Color.FromArgb(220, 38, 38);
-            var i2 = sCot.Points.AddXY("Trung bình", d.UuTienTrungBinh);
-            sCot.Points[i2].Color = UiTheme.AccentAmber;
-            var i3 = sCot.Points.AddXY("Thấp", d.UuTienThap);
-            sCot.Points[i3].Color = Color.FromArgb(5, 150, 105);
+            var ix = sCot.Points.AddXY(i + 1, giaTri[i]);
+            var p = sCot.Points[ix];
+            p.AxisLabel = ten[i];
+            p.Color = mau[i];
+            p.Label = giaTri[i].ToString(CultureInfo.InvariantCulture);
         }
 
         var sLine = _chartXuHuong.Series["SoLuong"];
@@ -345,8 +362,8 @@ public partial class FrmDashboard : Form
         var vi = CultureInfo.GetCultureInfo("vi-VN");
         for (var i = 0; i < d.CacNgay.Count; i++)
         {
-            var nhan = d.CacNgay[i].ToString("dd/MM", vi);
-            sLine.Points.AddXY(nhan, d.SoLuongTaoTheoNgay[i]);
+            var ix = sLine.Points.AddXY(i + 1, d.SoLuongTaoTheoNgay[i]);
+            sLine.Points[ix].AxisLabel = d.CacNgay[i].ToString("dd/MM", vi);
         }
 
         _chartTrangThai.Invalidate();

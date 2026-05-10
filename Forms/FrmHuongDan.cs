@@ -13,48 +13,61 @@ public partial class FrmHuongDan : Form
         HƯỚNG DẪN SỬ DỤNG HELPTICKET
 
 
+        0. Cài đặt trước khi chạy
+        • Cần .NET 8 (Windows) và SQL Server (LocalDB / Express / bản đầy đủ đều được).
+        • Mở SQL Server Management Studio (hoặc sqlcmd), chạy toàn bộ file Scripts\HelpTicket.sql để tạo CSDL HelpTicketDB và dữ liệu mẫu.
+        • Mở mã nguồn, trong DAL\Database.cs chỉnh thuộc tính ConnectionString: đổi Server=... cho khớp instance SQL trên máy bạn; giữ Database=HelpTicketDB và Integrated Security nếu đăng nhập Windows.
+        • Build và chạy project HelpTicket; nếu không kết nối được SQL, ứng dụng sẽ báo lỗi trong hộp thoại.
+
+
+        Tài khoản demo (sau khi chạy script)
+        • admin / admin123 — Quản trị
+        • kythuat01 hoặc kythuat02 / kt@123 — Kỹ thuật viên
+        • gvnguyen, svtran, nhanvienhc / user@123 — Người dùng
+        (Đây là mật khẩu dạng plain text phục vụ học tập; môi trường thật nên băm mật khẩu và đổi ngay.)
+
+
         1. Đăng nhập và phiên làm việc
-        • Nhập tài khoản và mật khẩu do quản trị cấp; chỉ tài khoản đang hoạt động (Hoạt động = 1) mới đăng nhập được.
+        • Chỉ tài khoản có cờ hoạt động (HoatDong = 1) mới đăng nhập được.
         • Có thể bật «Hiện mật khẩu» để kiểm tra khi gõ.
-        • Sau khi vào màn hình chính, tên và vai trò hiển thị trên thanh trên; dòng gợi ý bên sidebar nhắc phạm vi quyền của bạn.
-        • Đăng xuất khi dùng máy chung để tránh người khác thao tác thay.
+        • Trên màn hình chính: tên và vai trò ở thanh trên; sidebar có dòng gợi ý theo quyền của bạn.
+        • Nên «Đăng xuất» khi dùng máy chung.
 
 
         2. Điều hướng (sidebar)
-        • Tổng quan — biểu đồ và số liệu ticket theo trạng thái; dữ liệu chỉ trong phạm vi quyền của bạn (xem mục 5).
-        • Quản lý ticket — tạo, lọc, sửa, xóa ticket.
-        • Khoa / phòng — tra cứu danh mục đơn vị.
-        • Danh bạ — danh sách tài khoản đang hoạt động (không hiển thị mật khẩu).
+        • Tổng quan — thẻ số liệu và biểu đồ ticket theo trạng thái (Mở, Đang xử lý, Hoàn thành, Hủy), trong phạm vi quyền của bạn.
+        • Quản lý ticket — tạo, lọc, sửa, xóa, xuất CSV.
+        • Khoa / phòng — chỉ Quản trị và Kỹ thuật viên thấy mục này: tra cứu danh mục; chỉ Quản trị được thêm / sửa / xóa đơn vị.
+        • Danh bạ — danh sách tài khoản (không hiển thị mật khẩu). Quản trị: thêm, sửa, xóa, bật/tắt hoạt động và lọc theo vai trò/trạng thái đầy đủ. Kỹ thuật viên và Người dùng: chỉ xem, mặc định chỉ thấy tài khoản đang hoạt động.
         • Hướng dẫn — trang này.
-        • Giới thiệu — thông tin phiên bản.
+        • Giới thiệu — mô tả ngắn và phiên bản ứng dụng.
 
 
         3. Quản lý ticket
-        • Lọc theo tiêu đề (gần đúng), khoa/phòng, trạng thái; bấm «Lọc» hoặc nhấn Enter trong ô tiêu đề để áp dụng.
+        • Lọc theo tiêu đề (gần đúng), khoa/phòng, trạng thái; bấm «Lọc» hoặc Enter trong ô tiêu đề.
         • Chọn một dòng trong lưới để xem/chỉnh chi tiết bên dưới.
-        • Thêm: nhập tiêu đề, nội dung, chọn khoa/phòng và mức ưu tiên; trạng thái mặc định là Mở. Quản trị và kỹ thuật viên có thể gán người phụ trách và đổi trạng thái ngay khi tạo.
-        • Sửa: quản trị / kỹ thuật viên cập nhật đầy đủ (kể cả phân công và trạng thái). Người dùng thường chỉ sửa được ticket do chính mình tạo, và không đổi người phụ trách hay trạng thái.
-        • Xóa: người dùng thường chỉ xóa được ticket của mình khi trạng thái còn «Mở». Quản trị và kỹ thuật viên có thể xóa ticket trong phạm vi quản lý (sau khi xác nhận).
+        • Thêm: tiêu đề, nội dung, khoa/phòng, mức ưu tiên; trạng thái mặc định là Mở. Quản trị và Kỹ thuật viên có thể gán người phụ trách và đổi trạng thái ngay khi tạo.
+        • Sửa: Quản trị / Kỹ thuật viên cập nhật đầy đủ (phân công, trạng thái, …). Người dùng chỉ sửa ticket do mình tạo; không đổi người phụ trách và trạng thái.
+        • Xóa: Người dùng chỉ xóa ticket của mình khi trạng thái còn Mở. Quản trị và Kỹ thuật viên xóa trong phạm vi quản lý (có xác nhận).
+        • Xuất CSV — xuất các cột đang hiển thị trên lưới (theo bộ lọc hiện tại) ra file mở được bằng Excel.
 
 
         4. Phím tắt (màn Quản lý ticket)
         • Enter trong ô lọc tiêu đề — chạy lọc.
-        • Ctrl+F — đưa con trỏ vào ô lọc tiêu đề và chọn toàn bộ nội dung ô.
+        • Ctrl+F — focus ô lọc tiêu đề và chọn hết nội dung.
 
 
-        5. Phân quyền (ba vai trò)
-        Hệ thống dựa vào «Mã vai trò» trên tài khoản của bạn.
+        5. Tóm tắt ba vai trò (ticket & dashboard)
+        • Quản trị — xem mọi ticket; phân công, đổi trạng thái, sửa/xóa; thống kê trên toàn bộ ticket.
+        • Kỹ thuật viên — như Quản trị về phạm vi ticket (xem tất cả, phân công, cập nhật trạng thái).
+        • Người dùng — chỉ thấy ticket do mình tạo; tạo và sửa nội dung/khoa/ưu tiên; chỉ xóa khi còn Mở.
 
-        • Quản trị — xem mọi ticket; phân công, đổi trạng thái, sửa/xóa đầy đủ; thống kê tổng quan trên toàn bộ ticket.
-        • Kỹ thuật viên — giống quản trị về phạm vi ticket (xem tất cả, phân công, cập nhật trạng thái xử lý); dùng để tiếp nhận và xử lý yêu cầu.
-        • Người dùng — chỉ thấy và thống kê các ticket do chính mình tạo; có thể tạo ticket và sửa nội dung/khoa/ưu tiên của ticket đó; chỉ xóa được ticket của mình khi còn trạng thái Mở.
-
-        Nếu thiếu thao tác trên giao diện (ví dụ: combo người phụ trách, trạng thái bị mờ), đó là do vai trò của bạn không được phép thao tác đó.
+        Nếu ô phân công, combo trạng thái bị vô hiệu hoặc thiếu nút trên Danh bạ / Khoa phòng — đó là do vai trò không được phép.
 
 
         6. Lưu ý
-        • Cần kết nối đúng tới SQL Server theo cấu hình ứng dụng; lỗi kết nối sẽ hiện trong hộp thoại.
-        • Mật khẩu trong cơ sở dữ liệu là trách nhiệm bảo mật của đơn vị triển khai; nên đổi mật khẩu mặc định trước khi đưa vào dùng thật.
+        • Luôn đảm bảo SQL Server chạy và chuỗi kết nối trong Database.cs đúng với máy bạn.
+        • Dữ liệu mẫu và mật khẩu demo chỉ dùng cho mục đích học tập; triển khai thật cần harden bảo mật CSDL và ứng dụng.
         """;
 
     protected override void OnResize(EventArgs e)

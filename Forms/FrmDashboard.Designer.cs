@@ -29,19 +29,19 @@ partial class FrmDashboard
     {
         panelRoot = new Panel();
         tableCards = new TableLayoutPanel();
+        btnRefresh = new Button();
+        lblTitle = new Label();
         lblValTong = new Label();
         lblValMo = new Label();
         lblValDangXuLy = new Label();
         lblValHoanThanh = new Label();
         lblValHuy = new Label();
-        btnRefresh = new Button();
-        lblTitle = new Label();
         panelRoot.SuspendLayout();
         SuspendLayout();
         // 
         // panelRoot
         // 
-        panelRoot.BackColor = UiTheme.BgCanvas;
+        panelRoot.BackColor = Color.FromArgb(245, 242, 235);
         panelRoot.Controls.Add(tableCards);
         panelRoot.Controls.Add(btnRefresh);
         panelRoot.Controls.Add(lblTitle);
@@ -50,12 +50,11 @@ partial class FrmDashboard
         panelRoot.Margin = new Padding(3, 4, 3, 4);
         panelRoot.Name = "panelRoot";
         panelRoot.Padding = new Padding(23, 27, 23, 27);
-        panelRoot.Size = new Size(1019, 718);
+        panelRoot.Size = new Size(1018, 685);
         panelRoot.TabIndex = 0;
         // 
         // tableCards
         // 
-        tableCards.Anchor = AnchorStyles.Top | AnchorStyles.Left;
         tableCards.ColumnCount = 5;
         tableCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.33816F));
         tableCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.6142712F));
@@ -69,6 +68,35 @@ partial class FrmDashboard
         tableCards.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
         tableCards.Size = new Size(967, 154);
         tableCards.TabIndex = 0;
+        // 
+        // btnRefresh
+        // 
+        btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnRefresh.BackColor = Color.FromArgb(13, 148, 136);
+        btnRefresh.Cursor = Cursors.Hand;
+        btnRefresh.FlatAppearance.BorderSize = 0;
+        btnRefresh.FlatAppearance.MouseOverBackColor = Color.FromArgb(15, 118, 110);
+        btnRefresh.FlatStyle = FlatStyle.Flat;
+        btnRefresh.Font = new Font("Bahnschrift SemiBold", 9.75F);
+        btnRefresh.ForeColor = Color.White;
+        btnRefresh.Location = new Point(846, 31);
+        btnRefresh.Margin = new Padding(3, 4, 3, 4);
+        btnRefresh.Name = "btnRefresh";
+        btnRefresh.Size = new Size(137, 45);
+        btnRefresh.TabIndex = 1;
+        btnRefresh.Text = "Làm mới";
+        btnRefresh.UseVisualStyleBackColor = false;
+        btnRefresh.Click += BtnRefresh_Click;
+        // 
+        // lblTitle
+        // 
+        lblTitle.AutoSize = true;
+        lblTitle.ForeColor = Color.FromArgb(15, 23, 42);
+        lblTitle.Location = new Point(46, 53);
+        lblTitle.Name = "lblTitle";
+        lblTitle.Size = new Size(120, 20);
+        lblTitle.TabIndex = 2;
+        lblTitle.Text = "Tổng quan ticket";
         // 
         // lblValTong
         // 
@@ -105,43 +133,12 @@ partial class FrmDashboard
         lblValHuy.Size = new Size(100, 23);
         lblValHuy.TabIndex = 0;
         // 
-        // btnRefresh
-        // 
-        btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnRefresh.BackColor = UiTheme.AccentTeal;
-        btnRefresh.Cursor = Cursors.Hand;
-        btnRefresh.FlatAppearance.BorderSize = 0;
-        btnRefresh.FlatAppearance.MouseOverBackColor = Color.FromArgb(15, 118, 110);
-        btnRefresh.FlatStyle = FlatStyle.Flat;
-        btnRefresh.Font = new Font("Bahnschrift SemiBold", 9.75F);
-        btnRefresh.ForeColor = Color.White;
-        btnRefresh.Location = new Point(847, 31);
-        btnRefresh.Margin = new Padding(3, 4, 3, 4);
-        btnRefresh.Name = "btnRefresh";
-        btnRefresh.Size = new Size(137, 45);
-        btnRefresh.TabIndex = 1;
-        btnRefresh.Text = "Làm mới";
-        btnRefresh.UseVisualStyleBackColor = false;
-        btnRefresh.Click += BtnRefresh_Click;
-        // 
-        // lblTitle
-        // 
-        lblTitle.AutoSize = true;
-        lblTitle.Font = UiTheme.FontDisplay(13F);
-        lblTitle.ForeColor = UiTheme.PrimaryInk;
-        lblTitle.Location = new Point(46, 53);
-        lblTitle.Name = "lblTitle";
-        lblTitle.Size = new Size(167, 28);
-        lblTitle.TabIndex = 2;
-        lblTitle.Text = "Tổng quan ticket";
-        // 
         // FrmDashboard
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(1019, 718);
+        ClientSize = new Size(1018, 685);
         Controls.Add(panelRoot);
-        Font = UiTheme.FontUi(9F);
         Margin = new Padding(3, 4, 3, 4);
         MinimumSize = new Size(720, 360);
         Name = "FrmDashboard";

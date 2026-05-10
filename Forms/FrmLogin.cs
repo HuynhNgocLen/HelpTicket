@@ -18,8 +18,8 @@ public partial class FrmLogin : Form
     private void SetupControls()
     {
         // Tạo bottom border cho TextBox (luôn hiện)
-        _underlineUser = CreateUnderline(txtUser, 260 + 30 + 4);
-        _underlinePass = CreateUnderline(txtPass, 365 + 30 + 4);
+        _underlineUser = CreateUnderline(txtUser);
+        _underlinePass = CreateUnderline(txtPass);
         
         panelCard.Controls.Add(_underlineUser);
         panelCard.Controls.Add(_underlinePass);
@@ -33,14 +33,14 @@ public partial class FrmLogin : Form
         SetupButtonHover(btnExit, Color.FromArgb(255, 253, 249), Color.FromArgb(240, 240, 240));
     }
 
-    private Panel CreateUnderline(TextBox textBox, int top)
+    private Panel CreateUnderline(TextBox textBox)
     {
         var underline = new Panel
         {
             Height = 1,
             BackColor = Color.FromArgb(200, 200, 200),
-            Location = new Point(91, top),
-            Width = 376,
+            Location = new Point(textBox.Left, textBox.Bottom + 2),
+            Width = textBox.Width,
             Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
             Visible = true
         };
