@@ -37,7 +37,7 @@ public partial class FrmHuongDan : Form
         2. Điều hướng (sidebar)
         • Tổng quan — thẻ số liệu và biểu đồ ticket theo trạng thái (Mở, Đang xử lý, Hoàn thành, Hủy), trong phạm vi quyền của bạn.
         • Quản lý ticket — tạo, lọc, sửa, xóa, xuất CSV.
-        • Khoa / phòng — chỉ Quản trị và Kỹ thuật viên thấy mục này: tra cứu danh mục; chỉ Quản trị được thêm / sửa / xóa đơn vị.
+        • Khoa / phòng — mọi vai trò đều tra cứu danh mục; chỉ Quản trị được thêm / sửa / xóa đơn vị (Kỹ thuật viên và Người dùng chỉ xem).
         • Danh bạ — danh sách tài khoản (không hiển thị mật khẩu). Quản trị: thêm, sửa, xóa, bật/tắt hoạt động và lọc theo vai trò/trạng thái đầy đủ. Kỹ thuật viên và Người dùng: chỉ xem, mặc định chỉ thấy tài khoản đang hoạt động.
         • Hướng dẫn — trang này.
         • Giới thiệu — mô tả ngắn và phiên bản ứng dụng.

@@ -24,12 +24,12 @@ public partial class FrmKhoaPhongBrowse : Form
     {
         base.OnLoad(e);
 
-        // Chặn vai trò không được phép vào màn này
+        // Tra cứu danh mục cho mọi vai trò; CRUD chỉ Quản trị (ApDungPhanQuyen).
         var ma = AppSession.CurrentUser?.MaVaiTro ?? 0;
-        if (ma != VaiTroCodes.QuanTri && ma != VaiTroCodes.KyThuatVien)
+        if (ma != VaiTroCodes.QuanTri && ma != VaiTroCodes.KyThuatVien && ma != VaiTroCodes.NguoiDung)
         {
             MessageBox.Show(
-                "Bạn không có quyền truy cập danh mục Khoa / phòng.\nChỉ Quản trị và Kỹ thuật viên mới được vào.",
+                "Bạn không có quyền truy cập danh mục Khoa / phòng.",
                 "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             BeginInvoke(Close);
             return;

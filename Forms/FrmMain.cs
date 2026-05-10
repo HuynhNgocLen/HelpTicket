@@ -68,14 +68,12 @@ public partial class FrmMain : Form
             return;
         }
 
-        // Chỉ Quản trị (1) và Kỹ thuật viên (2) mới được vào danh mục Khoa / phòng.
-        var duocVaoKhoaPhong = u.MaVaiTro == VaiTroCodes.QuanTri
-                            || u.MaVaiTro == VaiTroCodes.KyThuatVien;
-        btnNavKhoa.Visible = duocVaoKhoaPhong;
+        // Mọi vai trò đăng nhập đều thấy mục Khoa / phòng để tra cứu; chỉ Quản trị thêm/sửa/xóa (xử lý trong FrmKhoaPhongBrowse).
+        btnNavKhoa.Visible = true;
 
         lblNavHint.Text = u.MaVaiTro switch
         {
-            VaiTroCodes.NguoiDung => "Bạn đang dùng quyền Người dùng: trên màn Ticket chỉ thấy ticket do bạn tạo.",
+            VaiTroCodes.NguoiDung => "Người dùng: trên Ticket chỉ thấy ticket do bạn tạo; Khoa / phòng chỉ tra cứu danh mục.",
             VaiTroCodes.KyThuatVien => "Kỹ thuật viên: xem mọi ticket, phân công và đổi trạng thái xử lý. Khoa / phòng chỉ xem.",
             VaiTroCodes.QuanTri => "Quản trị: toàn quyền dữ liệu ticket và tra cứu, quản lý danh mục Khoa / phòng.",
             _ => ""
@@ -100,16 +98,6 @@ public partial class FrmMain : Form
         }
         else if (ReferenceEquals(b, btnNavKhoa))
         {
-            var ma = AppSession.CurrentUser?.MaVaiTro ?? 0;
-            if (ma != VaiTroCodes.QuanTri && ma != VaiTroCodes.KyThuatVien)
-            {
-                MessageBox.Show(
-                    "Chỉ Quản trị và Kỹ thuật viên mới được truy cập danh mục Khoa / phòng.",
-                    "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                SetActiveNav(btnNavTickets);
-                return;
-            }
-
             OpenHost(new FrmKhoaPhongBrowse(), "Khoa / phòng", "Danh mục đơn vị nhận yêu cầu hỗ trợ.");
         }
         else if (ReferenceEquals(b, btnNavDanhBa))
